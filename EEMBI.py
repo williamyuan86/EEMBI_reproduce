@@ -9,8 +9,8 @@ from sklearn.decomposition import FastICA
 from scipy.optimize import linear_sum_assignment
 import networkx as nx
 import sys
-sys.path.append('D:/python_work/EEMBI/sachs')
-from MINE_ICA import get_bss
+sys.path.append('C:/code/codingai/EEMBI/sachs')
+# from MINE_ICA import get_bss
 from KnnCMI import cmi
 from rpy2.robjects.packages import importr
 from rpy2.robjects import numpy2ri
@@ -123,12 +123,12 @@ def get_exogenuous(data, method='FastICA'):
         ica=FastICA(n_components=n_nodes, random_state=0, whiten='unit-variance', max_iter=1000)
         Exo=ica.fit_transform(data)
         return Exo
-    elif method=='Mine_ICA':
-        data=torch.Tensor(np.array(data))
-        bss=get_bss(data)
-        Exo=bss(data)
-        Exo=Exo.detach().numpy()
-        return Exo
+    # elif method=='Mine_ICA':
+    #     data=torch.Tensor(np.array(data))
+    #     bss=get_bss(data)
+    #     Exo=bss(data)
+    #     Exo=Exo.detach().numpy()
+    #     return Exo
     else:
         raise ValueError('Method does not exist')
 
